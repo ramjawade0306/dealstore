@@ -90,7 +90,7 @@ export default function Home() {
         <div style={{ position: 'absolute', width: 600, height: 600, borderRadius: '50%', background: HERO_SLIDES[slide].color, filter: 'blur(120px)', opacity: 0.3, top: '20%', left: '10%', transition: 'all 1.5s ease' }} />
         <div style={{ position: 'absolute', width: 400, height: 400, borderRadius: '50%', background: '#c9a84c', filter: 'blur(100px)', opacity: 0.1, bottom: '10%', right: '15%', transition: 'all 1.5s ease' }} />
 
-        <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', alignItems: 'center', gap: 60, textAlign: 'left', zIndex: 10 }}>
+        <div className="container hero-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', alignItems: 'center', gap: 60, textAlign: 'left', zIndex: 10 }}>
           
           <div className="reveal" key={`content-${slide}`} style={{ opacity: 0 }}>
             <span style={{ 
@@ -105,9 +105,9 @@ export default function Home() {
             }}>
               {HERO_SLIDES[slide].tag}
             </span>
-            <h1 style={{
+            <h1 className="hero-title" style={{
               fontFamily: 'Cormorant Garamond, serif',
-              fontSize: 'clamp(3.5rem, 6vw, 5.5rem)',
+              fontSize: 'clamp(2.5rem, 8vw, 5.5rem)',
               fontWeight: 700,
               color: '#fff',
               marginBottom: 24,
@@ -167,7 +167,7 @@ export default function Home() {
         </div>
 
         {/* Backdrop text for luxury feel */}
-        <div style={{ 
+        <div className="hero-backdrop-text" style={{ 
           position: 'absolute', bottom: -20, right: -20, 
           fontSize: '12rem', fontWeight: 900, color: '#fff', opacity: 0.02, 
           fontFamily: 'Cormorant Garamond, serif', pointerEvents: 'none',
@@ -176,6 +176,15 @@ export default function Home() {
           EST. 2024 LUXURY
         </div>
       </section>
+
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .hero-grid { gap: 30px !important; text-align: center !important; }
+          .hero-title { font-size: 2.8rem !important; }
+          .hero-backdrop-text { display: none !important; }
+          section { min-height: 80vh !important; }
+        }
+      `}</style>
 
       {/* CATEGORIES */}
       <section className="section">

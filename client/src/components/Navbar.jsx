@@ -36,12 +36,12 @@ export default function Navbar() {
         <div style={{ maxWidth: 1240, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 70 }}>
           {/* Logo */}
           <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-            <img src="/logo.png" alt="Logo" style={{ height: 44, width: 44, marginRight: 12, objectFit: 'cover', borderRadius: '50%', border: '1px solid rgba(201,168,76,0.2)' }} />
+            <img src="/logo.png" alt="Logo" style={{ height: 44, width: 44, marginRight: 12, objectFit: 'cover', borderRadius: '50%', border: '1px solid rgba(201,168,76,0.2)' }} className="nav-logo-img" />
             <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
               <span className="logo-text" style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.4rem', fontWeight: 700, background: 'linear-gradient(135deg, #c9a84c, #e8c97a)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', whiteSpace: 'nowrap' }}>
                 LOW PRICE
               </span>
-              <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.55rem', letterSpacing: '0.25em', color: '#c9a84c', textTransform: 'uppercase' }}>
+              <span className="logo-subtext" style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.55rem', letterSpacing: '0.25em', color: '#c9a84c', textTransform: 'uppercase' }}>
                 LUXURY
               </span>
             </div>
@@ -74,10 +74,11 @@ export default function Navbar() {
               style={{ background: 'none', border: 'none', color: '#f9f6ef', fontSize: 20, padding: 4, cursor: 'pointer', transition: 'color 0.3s' }}
               onMouseEnter={e => e.target.style.color = '#c9a84c'}
               onMouseLeave={e => e.target.style.color = '#f9f6ef'}
+              className="hide-mobile"
             >🔍</button>
 
             {user && user?.role !== 'admin' && (
-              <Link href="/wishlist" title="My Wishlist" style={{ fontSize: 20, textDecoration: 'none' }}>❤️</Link>
+              <Link href="/wishlist" title="My Wishlist" style={{ fontSize: 20, textDecoration: 'none' }} className="hide-mobile">❤️</Link>
             )}
 
             {!isAdminPortal && user?.role !== 'admin' && (
@@ -92,7 +93,7 @@ export default function Navbar() {
             )}
 
             {user ? (
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }} className="hide-mobile">
                 <Link href="/profile" style={{ fontSize: 13, color: '#c9a84c' }}>
                   👤 {user.name?.split(' ')[0] || user.phoneNumber?.slice(-4)}
                 </Link>
@@ -104,7 +105,7 @@ export default function Navbar() {
                 </button>
               </div>
             ) : (
-              <Link href="/login" className="btn-gold" style={{ padding: '8px 20px', fontSize: 13 }}>Login</Link>
+              <Link href="/login" className="btn-gold hide-mobile" style={{ padding: '8px 20px', fontSize: 13 }}>Login</Link>
             )}
 
             {/* Hamburger */}
@@ -134,6 +135,17 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {menuOpen && (
           <div style={{ background: '#111', borderTop: '1px solid rgba(201,168,76,0.15)', padding: 20 }}>
+            {/* Search Input for Mobile */}
+            <form onSubmit={(e) => { e.preventDefault(); window.location.href = `/search?q=${searchQuery}`; }} style={{ marginBottom: 20 }}>
+              <input
+                className="input-luxury"
+                placeholder="Search products..."
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                style={{ width: '100%', fontSize: 16 }}
+              />
+            </form>
+
             <Link href="/products" style={{ display: 'block', padding: '12px 0', borderBottom: '1px solid rgba(255,255,255,0.05)', color: '#c9a84c', fontWeight: 600 }} onClick={() => setMenuOpen(false)}>All Products</Link>
             {categories.map(cat => (
               <Link key={cat} href={`/category/${cat.toLowerCase()}`}
@@ -141,7 +153,17 @@ export default function Navbar() {
                 onClick={() => setMenuOpen(false)}
               >{cat}</Link>
             ))}
-            <Link href="/deals" style={{ display: 'block', padding: '12px 0', color: '#c9a84c', fontWeight: 600 }} onClick={() => setMenuOpen(false)}>🔥 Deals</Link>
+            <Link href="/deals" style={{ display: 'block', padding: '12px 0', borderBottom: '1px solid rgba(255,255,255,0.05)', color: '#c9a84c', fontWeight: 600 }} onClick={() => setMenuOpen(false)}>🔥 Deals</Link>
+            
+            {user ? (
+               <>
+                <Link href="/wishlist" style={{ display: 'block', padding: '12px 0', borderBottom: '1px solid rgba(255,255,255,0.05)', color: '#f9f6ef' }} onClick={() => setMenuOpen(false)}>❤️ My Wishlist</Link>
+                <Link href="/profile" style={{ display: 'block', padding: '12px 0', borderBottom: '1px solid rgba(255,255,255,0.05)', color: '#f9f6ef' }} onClick={() => setMenuOpen(false)}>👤 My Profile</Link>
+                <button onClick={() => { logout(); setMenuOpen(false); }} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '16px 0', background: 'none', color: '#c9a84c', fontWeight: 600 }}>Logout</button>
+               </>
+            ) : (
+               <Link href="/login" style={{ display: 'block', padding: '16px 0', color: '#c9a84c', fontWeight: 700 }} onClick={() => setMenuOpen(false)}>Login / Sign Up</Link>
+            )}
           </div>
         )}
       </nav>
@@ -156,9 +178,16 @@ export default function Navbar() {
         @media (max-width: 1050px) {
           .hide-tablet { display: none !important; }
           .menu-btn { display: block !important; }
+          .hide-mobile { display: none !important; }
+          .logo-text { font-size: 1.1rem !important; }
+          .logo-subtext { font-size: 0.45rem !important; }
+          .nav-logo-img { height: 36px !important; width: 36px !important; }
+          .nav-actions { gap: 16px !important; }
         }
         @media (max-width: 768px) {
           .menu-btn { display: block !important; }
+          .logo-text { font-size: 1rem !important; }
+          nav { padding: 0 12px !important; }
         }
       `}</style>
     </>
