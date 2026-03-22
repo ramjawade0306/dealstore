@@ -158,9 +158,17 @@ export default function AdminDashboard() {
 
         {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32, flexWrap: 'wrap', gap: 16 }}>
-          <div>
-            <h1 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: '#c9a84c' }}>Admin Dashboard</h1>
-            <p style={{ color: '#6b6b6b', fontSize: 14 }}>Low Price Luxury · Manage your store</p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+            <div>
+              <h1 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: '#c9a84c' }}>Admin Dashboard</h1>
+              <p style={{ color: '#6b6b6b', fontSize: 14 }}>Low Price Luxury · Manage your store</p>
+            </div>
+            <button 
+              onClick={() => { localStorage.clear(); window.location.reload(); }}
+              style={{ background: 'rgba(201,168,76,0.1)', border: '1px solid rgba(201,168,76,0.3)', color: '#c9a84c', padding: '6px 14px', borderRadius: 8, fontSize: 11, cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '0.05em' }}
+            >
+              🔄 Refresh Session
+            </button>
           </div>
         </div>
 

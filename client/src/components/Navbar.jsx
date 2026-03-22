@@ -97,7 +97,12 @@ export default function Navbar() {
                 <Link href="/profile" style={{ fontSize: 13, color: '#c9a84c' }} className="hide-mobile">
                   👤 {user.name?.split(' ')[0] || user.phoneNumber?.slice(-4)}
                 </Link>
-                <Link href="/profile" style={{ fontSize: 20 }} className="show-mobile-only">👤</Link>
+                <Link href="/profile" style={{ color: '#c9a84c', display: 'flex', alignItems: 'center' }} className="show-mobile-only">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </Link>
                 {user.role === 'admin' && (
                   <Link href="/admin" className="badge-gold hide-mobile" style={{ display: 'inline-block', cursor: 'pointer', textDecoration: 'none' }}>Admin</Link>
                 )}
@@ -108,7 +113,12 @@ export default function Navbar() {
             ) : (
               <>
                 <Link href="/login" className="btn-gold hide-mobile" style={{ padding: '8px 20px', fontSize: 13 }}>Login</Link>
-                <Link href="/login" style={{ fontSize: 20 }} className="show-mobile-only">👤</Link>
+                <Link href="/login" style={{ color: '#c9a84c', display: 'flex', alignItems: 'center' }} className="show-mobile-only">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </Link>
               </>
             )}
 
