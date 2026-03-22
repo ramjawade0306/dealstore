@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --gold: #c9a84c;
+  --gold-light: #e8c97a;
+  --gold-dark: #9a7a2e;
+  --black: #0a0a0a;
+  --black-soft: #111111;
+  --black-card: #161616;
+  --white: #f9f6ef;
+  --white-pure: #ffffff;
+  --gray: #6b6b6b;
+  --gray-light: #2a2a2a;
+  --gradient-gold: linear-gradient(135deg, #c9a84c 0%, #e8c97a 50%, #c9a84c 100%);
+  --gradient-dark: linear-gradient(180deg, #0a0a0a 0%, #161616 100%);
+  --shadow-gold: 0 4px 24px rgba(201, 168, 76, 0.20);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --radius: 8px;
+  --radius-lg: 16px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+a { color: inherit; text-decoration: none; }
+
+img { max-width: 100%; display: block; }
+
+button { cursor: pointer; border: none; outline: none; font-family: inherit; }
+
+/* -------- BTN -------- */
+.btn-gold {
+  background: var(--gradient-gold);
+  color: var(--black);
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: var(--radius);
+  transition: var(--transition);
+  letter-spacing: 0.05em;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+.btn-gold:hover { opacity: 0.88; box-shadow: var(--shadow-gold); transform: translateY(-1px); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--gold);
+  border: 1.5px solid var(--gold);
+  padding: 11px 26px;
+  border-radius: var(--radius);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: var(--transition);
+}
+.btn-outline:hover { background: var(--gold); color: var(--black); }
+
+/* -------- BADGE -------- */
+.badge-gold {
+  background: var(--gradient-gold);
+  color: var(--black);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 50px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* -------- SECTION -------- */
+.section { padding: 64px 0; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.section-subtitle {
+  color: var(--gold);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.divider-gold {
+  width: 60px;
+  height: 2px;
+  background: var(--gradient-gold);
+  margin: 16px 0 40px;
+}
+
+/* -------- PRODUCT CARD -------- */
+.product-card {
+  background: var(--black-card);
+  border: 1px solid rgba(201,168,76,0.12);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition);
+  position: relative;
+}
+.product-card:hover {
+  border-color: rgba(201,168,76,0.4);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-4px);
+}
+.product-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  transition: var(--transition);
+}
+.product-card:hover img { transform: scale(1.04); }
+.product-card-body { padding: 16px; }
+.product-card-brand { color: var(--gold); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+.product-card-title { font-size: 1.05rem; margin-bottom: 10px; }
+.product-card-price { display: flex; align-items: center; gap: 10px; }
+.price-original { text-decoration: line-through; color: var(--gray); font-size: 13px; }
+.price-discount { color: var(--gold-light); font-weight: 700; font-size: 1.15rem; }
+
+/* -------- INSTAGRAM GRID -------- */
+.insta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 4px;
+}
+@media (min-width: 768px) {
+  .insta-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1024px) {
+  .insta-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* -------- FORMS -------- */
+.input-luxury {
+  background: var(--gray-light);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: var(--radius);
+  color: var(--white);
+  padding: 12px 16px;
+  width: 100%;
+  font-size: 14px;
+  outline: none;
+  transition: var(--transition);
+}
+.input-luxury:focus { border-color: var(--gold); }
+.input-luxury::placeholder { color: var(--gray); }
+
+/* -------- GOLD LINE -------- */
+.gold-line { height: 1px; background: var(--gradient-gold); opacity: 0.3; }
+
+/* -------- LOADER -------- */
+.loader-gold {
+  width: 36px; height: 36px;
+  border: 3px solid rgba(201,168,76,0.2);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: auto;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* -------- SCROLLBAR -------- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--black-soft); }
+::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 4px; }
+
+/* -------- TOAST OVERRIDE -------- */
+.toast-luxury { background: var(--black-card) !important; color: var(--white) !important; border: 1px solid rgba(201,168,76,0.3) !important; }
+
+/* -------- ANIMATIONS -------- */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); filter: blur(10px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+.reveal {
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes pulse-gold {
+  0% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(201, 168, 76, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0); }
+}
+.pulse-gold {
+  animation: pulse-gold 2s infinite;
+}
+
+/* -------- RESPONSIVE HELPERS -------- */
+@media (max-width: 640px) {
+  .section { padding: 40px 0; }
+  .hide-mobile { display: none !important; }
+}
