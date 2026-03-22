@@ -108,7 +108,7 @@ export default function Navbar() {
             ) : (
               <>
                 <Link href="/login" className="btn-gold hide-mobile" style={{ padding: '8px 20px', fontSize: 13 }}>Login</Link>
-                <Link href="/login" style={{ fontSize: 20 }} className="show-mobile-only">🔑</Link>
+                <Link href="/login" style={{ fontSize: 20 }} className="show-mobile-only">👤</Link>
               </>
             )}
 
