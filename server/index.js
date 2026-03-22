@@ -9,6 +9,15 @@ connectDB();
 
 const app = express();
 
+// Startup Environment Check
+console.log('--- Startup Environment Check ---');
+console.log('JWT_SECRET present:', !!process.env.JWT_SECRET);
+console.log('MONGODB_URI present:', !!process.env.MONGODB_URI);
+if (!process.env.JWT_SECRET) {
+  console.error('FATAL ERROR: JWT_SECRET is not defined!');
+}
+console.log('--------------------------------');
+
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());

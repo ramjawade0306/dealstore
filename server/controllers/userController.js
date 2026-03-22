@@ -55,6 +55,13 @@ exports.loginUser = async (req, res) => {
     const user = await User.findOne({ phoneNumber });
 
     if (user && (await user.matchPassword(password))) {
+      // Force Admin role for primary admin phone number (failsafe)
+      if (phoneNumber === '+919999999999' && user.role !== 'admin') {
+        user.role = 'admin';
+        await user.save();
+        console.log(`[AUTH] Fail-safe: Restored Admin role for ${phoneNumber}`);
+      }
+
       res.json({
         _id: user._id,
         phoneNumber: user.phoneNumber,

@@ -93,19 +93,23 @@ export default function Navbar() {
             )}
 
             {user ? (
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }} className="hide-mobile">
-                <Link href="/profile" style={{ fontSize: 13, color: '#c9a84c' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <Link href="/profile" style={{ fontSize: 13, color: '#c9a84c' }} className="hide-mobile">
                   👤 {user.name?.split(' ')[0] || user.phoneNumber?.slice(-4)}
                 </Link>
+                <Link href="/profile" style={{ fontSize: 20 }} className="show-mobile-only">👤</Link>
                 {user.role === 'admin' && (
-                  <Link href="/admin" className="badge-gold" style={{ display: 'inline-block', cursor: 'pointer', textDecoration: 'none' }}>Admin</Link>
+                  <Link href="/admin" className="badge-gold hide-mobile" style={{ display: 'inline-block', cursor: 'pointer', textDecoration: 'none' }}>Admin</Link>
                 )}
-                <button onClick={logout} style={{ background: 'none', border: '1px solid rgba(201,168,76,0.4)', color: '#c9a84c', padding: '6px 14px', borderRadius: 6, fontSize: 12, cursor: 'pointer' }}>
+                <button onClick={logout} className="hide-mobile" style={{ background: 'none', border: '1px solid rgba(201,168,76,0.4)', color: '#c9a84c', padding: '6px 14px', borderRadius: 6, fontSize: 12, cursor: 'pointer' }}>
                   Logout
                 </button>
               </div>
             ) : (
-              <Link href="/login" className="btn-gold hide-mobile" style={{ padding: '8px 20px', fontSize: 13 }}>Login</Link>
+              <>
+                <Link href="/login" className="btn-gold hide-mobile" style={{ padding: '8px 20px', fontSize: 13 }}>Login</Link>
+                <Link href="/login" style={{ fontSize: 20 }} className="show-mobile-only">🔑</Link>
+              </>
             )}
 
             {/* Hamburger */}
@@ -182,13 +186,16 @@ export default function Navbar() {
           .logo-text { font-size: 1.1rem !important; }
           .logo-subtext { font-size: 0.45rem !important; }
           .nav-logo-img { height: 36px !important; width: 36px !important; }
-          .nav-actions { gap: 16px !important; }
+          .nav-actions { gap: 12px !important; }
+          .show-mobile-only { display: block !important; }
         }
         @media (max-width: 768px) {
           .menu-btn { display: block !important; }
           .logo-text { font-size: 1rem !important; }
           nav { padding: 0 12px !important; }
+          .nav-actions { gap: 12px !important; }
         }
+        .show-mobile-only { display: none; }
       `}</style>
     </>
   );
