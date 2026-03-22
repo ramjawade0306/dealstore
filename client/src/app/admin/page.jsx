@@ -40,10 +40,7 @@ export default function AdminDashboard() {
     formData.append('image', file);
 
     try {
-      const token = localStorage.getItem('token');
-      const { data } = await api.post('/upload', formData, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      const { data } = await api.post('/upload', formData);
       setNewProduct(prev => ({ ...prev, images: [...prev.images, data.url] }));
       toast.success('Image uploaded!');
     } catch (err) {
