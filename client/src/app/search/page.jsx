@@ -1,11 +1,11 @@
 'use client';
-import { useSearchParams, Suspense } from 'next/navigation';
+import { Suspense } from 'react';
 import ProductsPage from '../products/page';
 
-// Re-use products page with search param active
+// Re-use products page reachable via search
 export default function SearchPage() {
   return (
-    <Suspense>
+    <Suspense fallback={<div style={{ paddingTop: 120, textAlign: 'center' }}><div className="loader-gold" /></div>}>
       <ProductsPage />
     </Suspense>
   );

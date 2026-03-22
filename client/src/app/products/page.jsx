@@ -1,10 +1,10 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import api from '@/lib/api';
 import ProductCard from '@/components/ProductCard';
 
-export default function ProductsPage() {
+function ProductsList() {
   const searchParams = useSearchParams();
   const q = searchParams.get('q') || '';
   const [products, setProducts] = useState([]);
@@ -54,5 +54,13 @@ export default function ProductsPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<div style={{ paddingTop: 120, textAlign: 'center' }}><div className="loader-gold" /></div>}>
+      <ProductsList />
+    </Suspense>
   );
 }
