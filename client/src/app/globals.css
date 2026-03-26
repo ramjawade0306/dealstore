@@ -138,17 +138,23 @@ button { cursor: pointer; border: none; outline: none; font-family: inherit; }
 .price-original { text-decoration: line-through; color: var(--gray); font-size: 13px; }
 .price-discount { color: var(--gold-light); font-weight: 700; font-size: 1.15rem; }
 
-/* -------- INSTAGRAM GRID (High Density) -------- */
+/* -------- INSTAGRAM GRID (High Density For Mobile) -------- */
 .insta-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 4px !important;
 }
 @media (min-width: 768px) {
-  .insta-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .insta-grid { 
+    grid-template-columns: repeat(3, 1fr) !important; 
+    gap: 20px !important; 
+  }
 }
 @media (min-width: 1024px) {
-  .insta-grid { grid-template-columns: repeat(4, 1fr); gap: 30px; }
+  .insta-grid { 
+    grid-template-columns: repeat(4, 1fr) !important; 
+    gap: 30px !important; 
+  }
 }
 
 /* -------- FORMS -------- */
