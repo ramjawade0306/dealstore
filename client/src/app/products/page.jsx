@@ -49,7 +49,13 @@ function ProductsList() {
               <p style={{ color: '#6b6b6b', fontSize: 18 }}>No products found</p>
             </div>
           ) : (
-            <div className="insta-grid">{filtered.map(p => <ProductCard key={p._id} product={p} />)}</div>
+            <div className="insta-grid" style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(4, 1fr)', 
+              gap: 8 
+            }}>
+              {filtered.map(p => <ProductCard key={p._id} product={p} />)}
+            </div>
           )
         )}
       </div>

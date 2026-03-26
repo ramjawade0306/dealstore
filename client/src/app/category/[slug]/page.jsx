@@ -33,7 +33,13 @@ export default function CategoryPage() {
       <div className="container" style={{ paddingTop: 48, paddingBottom: 80 }}>
         {loading ? <div style={{ display: 'flex', justifyContent: 'center', padding: 60 }}><div className="loader-gold" /></div> : (
           products.length === 0 ? <p style={{ color: '#6b6b6b', textAlign: 'center', padding: '60px 0' }}>No products in this category yet.</p> :
-          <div className="insta-grid">{products.map(p => <ProductCard key={p._id} product={p} />)}</div>
+          <div className="insta-grid" style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(4, 1fr)', 
+            gap: 8 
+          }}>
+            {products.map(p => <ProductCard key={p._id} product={p} />)}
+          </div>
         )}
       </div>
     </div>

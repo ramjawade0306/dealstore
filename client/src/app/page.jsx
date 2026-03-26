@@ -273,7 +273,7 @@ export default function Home() {
           {loading ? (
             <div style={{ display: 'flex', justifyContent: 'center', padding: 80 }}><div className="loader-gold" /></div>
           ) : (
-            <div className="product-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 30 }}>
+            <div className="product-grid">
               {featured.map(p => <ProductCard key={p._id} product={p} />)}
             </div>
           )}
@@ -329,7 +329,7 @@ export default function Home() {
           {loading ? (
              <div style={{ display: 'flex', justifyContent: 'center', padding: 80 }}><div className="loader-gold" /></div>
           ) : (
-             <div className="product-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 30 }}>
+             <div className="product-grid">
                {filteredProducts.map(p => <ProductCard key={p._id} product={p} />)}
              </div>
           )}
@@ -389,8 +389,18 @@ export default function Home() {
           .hero-btn { padding: 12px 20px !important; font-size: 14px !important; text-align: center; }
           .hero-fg-image { display: none !important; }
           h1 { font-size: 3.5rem !important; }
-          .product-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 8px !important; }
+          .product-grid { 
+            display: grid !important;
+            grid-template-columns: repeat(4, 1fr) !important; 
+            gap: 8px !important; 
+          }
           .container { padding: 0 12px !important; }
+        }
+        
+        .product-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 30px;
         }
       `}</style>
     </div>

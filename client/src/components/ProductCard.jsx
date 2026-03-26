@@ -133,13 +133,14 @@ export default function ProductCard({ product }) {
         .price-discount { color: #f9f6ef; font-weight: 700; font-size: 1.1rem; }
         
         @media (max-width: 768px) {
-          .product-card-body { padding: 8px; }
-          .product-card-brand { font-size: 8px; letter-spacing: 1px; margin-bottom: 2px; }
-          .product-card-title { font-size: 0.85rem !important; margin-bottom: 4px; line-height: 1.2; }
-          .price-original { font-size: 10px; margin-right: 4px; display: block; }
-          .price-discount { font-size: 0.9rem; }
+          .product-card-body { padding: 4px; }
+          .product-card-brand { font-size: 7px; letter-spacing: 0.5px; margin-bottom: 1px; }
+          .product-card-title { font-size: 0.7rem !important; margin-bottom: 2px; line-height: 1.1; height: 1.6em; }
+          .price-original { font-size: 8px; margin-right: 2px; display: inline-block; }
+          .price-discount { font-size: 0.8rem; }
           .add-to-cart-btn { display: none !important; }
-          .badge-gold { font-size: 8px !important; padding: 2px 4px !important; }
+          .badge-gold { font-size: 7px !important; padding: 1px 3px !important; }
+          .product-card-price { flex-direction: column; align-items: flex-start; gap: 0; }
         }
       `}</style>
     </Link>
