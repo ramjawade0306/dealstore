@@ -18,14 +18,14 @@ const HERO_SLIDES = [
   { 
     headline: 'Timeless Precision', 
     sub: 'Experience the pinnacle of craftsmanship with our curated luxury timepiece collection.', 
-    image: 'C:\\Users\\jawad\\.gemini\\antigravity\brain\\30ba9377-8944-498d-804a-ed6f90fd5d28\\hero_luxury_watch_gold_dark_png_1774458929140.png', 
+    image: '/hero_luxury_watch.png', 
     accent: '#c9a84c',
     label: 'EXQUISITE WATCHES'
   },
   { 
     headline: 'Sensory Perfection', 
     sub: 'Discover rare fragrances that define elegance and leave a lasting impression.', 
-    image: 'C:\\Users\\jawad\\.gemini\\antigravity\brain\\30ba9377-8944-498d-804a-ed6f90fd5d28\\hero_luxury_perfume_gold_dark_png_1774458947665.png', 
+    image: '/hero_luxury_perfume.png', 
     accent: '#e8c97a',
     label: 'ELITE PERFUMES'
   },
