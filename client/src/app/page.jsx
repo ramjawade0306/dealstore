@@ -44,7 +44,6 @@ const HERO_SLIDES = [
 ];
 
 export default function Home() {
-  console.log("ABSTRACT_HERO_V1_LOADED");
   const [products, setProducts] = useState([]);
   const [featured, setFeatured] = useState([]);
   const [deals, setDeals] = useState([]);
