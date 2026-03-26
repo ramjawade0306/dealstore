@@ -97,7 +97,7 @@ export default function ProductCard({ product }) {
           </div>
           {user?.role !== 'admin' && (
             <button
-              className="btn-gold"
+              className="btn-gold add-to-cart-btn"
               style={{ width: '100%', marginTop: 14, padding: '10px', fontSize: 13 }}
               onClick={handleAddToCart}
               disabled={product.stock === 0}
@@ -114,6 +114,9 @@ export default function ProductCard({ product }) {
           border-radius: 8px;
           overflow: hidden;
           transition: all 0.4s;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
         }
         .product-card:hover {
           transform: translateY(-8px);
@@ -123,11 +126,21 @@ export default function ProductCard({ product }) {
         .product-card:hover .product-img {
           transform: scale(1.05);
         }
-        .product-card-body { padding: 16px; }
+        .product-card-body { padding: 16px; flex-grow: 1; display: flex; flex-direction: column; }
         .product-card-brand { color: #c9a84c; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
         .product-card-title { color: #f9f6ef; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem !important; margin-bottom: 12px; }
         .price-original { color: #666; text-decoration: line-through; font-size: 13px; margin-right: 8px; }
         .price-discount { color: #f9f6ef; font-weight: 700; font-size: 1.1rem; }
+        
+        @media (max-width: 768px) {
+          .product-card-body { padding: 8px; }
+          .product-card-brand { font-size: 8px; letter-spacing: 1px; margin-bottom: 2px; }
+          .product-card-title { font-size: 0.85rem !important; margin-bottom: 4px; line-height: 1.2; }
+          .price-original { font-size: 10px; margin-right: 4px; display: block; }
+          .price-discount { font-size: 0.9rem; }
+          .add-to-cart-btn { display: none !important; }
+          .badge-gold { font-size: 8px !important; padding: 2px 4px !important; }
+        }
       `}</style>
     </Link>
   );

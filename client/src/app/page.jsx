@@ -15,6 +15,11 @@ const CATEGORIES = [
 ];
 
 const HERO_SLIDES = [
+  /*
+   - **Major Visual Overhaul**: Completely redesigned the landing page for a world-class luxury experience. Implement high-end typography (Cormorant Garamond), immersive full-height hero sections with animated assets, and a consistent dark-palette aesthetic with gold accents.
+   - **Premium Navbar Branding**: Standardized all navigation icons to sharp, professional SVGs and implemented a sophisticated "Gold Gradient" effect for the brand logo.
+   - **Luxury Product Interface**: Upgraded the product cards to a premium dark-mode styling with gold-filled action buttons and vector-based iconography.
+  */
   { 
     headline: 'Timeless Precision', 
     sub: 'Experience the pinnacle of craftsmanship with our curated luxury timepiece collection.', 
@@ -84,16 +89,28 @@ export default function Home() {
         alignItems: 'center',
         background: '#050505'
       }}>
-        {/* Background Animation */}
+        {/* Background Hero Image */}
+        <div className="hero-bg-image fade-in" key={`bg-img-${slide}`} style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: `url(${HERO_SLIDES[slide].image})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.08,
+          zIndex: 1,
+          transition: 'all 1.5s ease'
+        }} />
+
+        {/* Background Glow */}
         <div style={{
           position: 'absolute',
           inset: 0,
           background: `radial-gradient(circle at 70% 50%, ${HERO_SLIDES[slide].accent}22 0%, transparent 60%)`,
           transition: 'all 1.5s ease',
-          zIndex: 1
+          zIndex: 2
         }} />
 
-        <div className="container" style={{
+        <div className="container hero-container" style={{
           position: 'relative',
           zIndex: 10,
           display: 'grid',
@@ -102,7 +119,7 @@ export default function Home() {
           gap: 40
         }}>
           {/* Content */}
-          <div style={{ textAlign: 'left' }}>
+          <div className="hero-content" style={{ textAlign: 'left' }}>
             <span className="fade-in" key={`label-${slide}`} style={{
               display: 'inline-block',
               padding: '4px 12px',
@@ -140,14 +157,14 @@ export default function Home() {
             }}>
               {HERO_SLIDES[slide].sub}
             </p>
-            <div style={{ display: 'flex', gap: 20 }}>
-              <Link href="/products" className="btn-gold-filled" style={{ padding: '16px 40px', fontWeight: 700 }}>EXPLORE NOW</Link>
-              <Link href="/deals" className="btn-outline-white" style={{ padding: '15px 38px', fontWeight: 600 }}>VIEW DEALS</Link>
+            <div className="hero-btns" style={{ display: 'flex', gap: 20 }}>
+              <Link href="/products" className="btn-gold-filled hero-btn" style={{ padding: '16px 40px', fontWeight: 700 }}>EXPLORE NOW</Link>
+              <Link href="/deals" className="btn-outline-white hero-btn" style={{ padding: '15px 38px', fontWeight: 600 }}>VIEW DEALS</Link>
             </div>
           </div>
 
-          {/* Image */}
-          <div className="fade-in img-float" key={`img-${slide}`} style={{
+          {/* Foreground Image - HIDDEN ON MOBILE via CSS below */}
+          <div className="fade-in img-float hero-fg-image" key={`img-${slide}`} style={{
             display: 'flex',
             justifyContent: 'center',
             position: 'relative'
@@ -268,7 +285,7 @@ export default function Home() {
           {loading ? (
             <div style={{ display: 'flex', justifyContent: 'center', padding: 80 }}><div className="loader-gold" /></div>
           ) : (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 30 }}>
+            <div className="product-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 30 }}>
               {featured.map(p => <ProductCard key={p._id} product={p} />)}
             </div>
           )}
@@ -324,7 +341,7 @@ export default function Home() {
           {loading ? (
              <div style={{ display: 'flex', justifyContent: 'center', padding: 80 }}><div className="loader-gold" /></div>
           ) : (
-             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 30 }}>
+             <div className="product-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 30 }}>
                {filteredProducts.map(p => <ProductCard key={p._id} product={p} />)}
              </div>
           )}
@@ -378,7 +395,14 @@ export default function Home() {
         }
         @media (max-width: 768px) {
           section { height: auto !important; padding: 100px 0 !important; }
+          .hero-container { grid-template-columns: 1fr !important; gap: 20px !important; }
+          .hero-content { text-align: center !important; display: flex; flex-direction: column; align-items: center; }
+          .hero-btns { flex-direction: column; width: 100%; max-width: 280px; gap: 12px !important; }
+          .hero-btn { padding: 12px 20px !important; font-size: 14px !important; text-align: center; }
+          .hero-fg-image { display: none !important; }
           h1 { font-size: 3.5rem !important; }
+          .product-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 8px !important; }
+          .container { padding: 0 12px !important; }
         }
       `}</style>
     </div>
