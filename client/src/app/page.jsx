@@ -44,6 +44,7 @@ const HERO_SLIDES = [
 ];
 
 export default function Home() {
+  console.log("ABSTRACT_HERO_V1_LOADED");
   const [products, setProducts] = useState([]);
   const [featured, setFeatured] = useState([]);
   const [deals, setDeals] = useState([]);
@@ -89,16 +90,13 @@ export default function Home() {
         alignItems: 'center',
         background: '#050505'
       }}>
-        {/* Background Hero Image - REMOVED AS PER USER REQUEST */}
-        <div className="hero-bg-image fade-in" key={`bg-img-${slide}`} style={{
+        {/* Background Hero Image - EXPLICITLY REMOVED */}
+        <div className="hero-bg-empty" key={`bg-empty-${slide}`} style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: `none`, // Removed image
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          opacity: 0,
-          zIndex: 1,
-          transition: 'all 1.5s ease'
+          background: '#050505',
+          opacity: 1,
+          zIndex: 1
         }} />
 
         {/* Abstract Gold Oval Background */}
