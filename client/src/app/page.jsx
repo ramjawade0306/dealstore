@@ -89,37 +89,55 @@ export default function Home() {
         alignItems: 'center',
         background: '#050505'
       }}>
-        {/* Background Hero Image */}
+        {/* Background Hero Image - REMOVED AS PER USER REQUEST */}
         <div className="hero-bg-image fade-in" key={`bg-img-${slide}`} style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: `url(${HERO_SLIDES[slide].image})`,
+          backgroundImage: `none`, // Removed image
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          opacity: 0.08,
+          opacity: 0,
           zIndex: 1,
           transition: 'all 1.5s ease'
         }} />
 
-        {/* Background Glow */}
+        {/* Abstract Gold Oval Background */}
+        <div className="hero-oval fade-in" key={`oval-${slide}`} style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 'min(600px, 90vw)',
+          height: 'min(400px, 60vh)',
+          background: `radial-gradient(circle, ${HERO_SLIDES[slide].accent}15 0%, transparent 80%)`,
+          border: `1px solid ${HERO_SLIDES[slide].accent}22`,
+          borderRadius: '50%',
+          filter: 'blur(20px)',
+          zIndex: 2,
+          transition: 'all 1.5s ease'
+        }} />
+
+        {/* Center Glow */}
         <div style={{
           position: 'absolute',
           inset: 0,
-          background: `radial-gradient(circle at 70% 50%, ${HERO_SLIDES[slide].accent}22 0%, transparent 60%)`,
+          background: `radial-gradient(circle at 50% 50%, ${HERO_SLIDES[slide].accent}11 0%, transparent 70%)`,
           transition: 'all 1.5s ease',
-          zIndex: 2
+          zIndex: 3
         }} />
 
         <div className="container hero-container" style={{
           position: 'relative',
           zIndex: 10,
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
-          gap: 40
+          justifyContent: 'center',
+          textAlign: 'center',
+          width: '100%'
         }}>
           {/* Content */}
-          <div className="hero-content" style={{ textAlign: 'left' }}>
+          <div className="hero-content" style={{ maxWidth: 800 }}>
             <span className="fade-in" key={`label-${slide}`} style={{
               display: 'inline-block',
               padding: '4px 12px',
@@ -150,44 +168,17 @@ export default function Home() {
             <p className="fade-in" key={`sub-${slide}`} style={{
               fontSize: '1.2rem',
               opacity: 0.7,
+              margin: '0 auto 40px',
               maxWidth: 500,
-              marginBottom: 40,
               lineHeight: 1.6,
               fontWeight: 300
             }}>
               {HERO_SLIDES[slide].sub}
             </p>
-            <div className="hero-btns" style={{ display: 'flex', gap: 20 }}>
+            <div className="hero-btns" style={{ display: 'flex', gap: 20, justifyContent: 'center' }}>
               <Link href="/products" className="btn-gold-filled hero-btn" style={{ padding: '16px 40px', fontWeight: 700 }}>EXPLORE NOW</Link>
               <Link href="/deals" className="btn-outline-white hero-btn" style={{ padding: '15px 38px', fontWeight: 600 }}>VIEW DEALS</Link>
             </div>
-          </div>
-
-          {/* Foreground Image - HIDDEN ON MOBILE via CSS below */}
-          <div className="fade-in img-float hero-fg-image" key={`img-${slide}`} style={{
-            display: 'flex',
-            justifyContent: 'center',
-            position: 'relative'
-          }}>
-            <div style={{
-              position: 'absolute',
-              width: '120%',
-              height: '120%',
-              background: `radial-gradient(circle, ${HERO_SLIDES[slide].accent}11 0%, transparent 70%)`,
-              filter: 'blur(50px)',
-              zIndex: -1
-            }} />
-            <img 
-              src={HERO_SLIDES[slide].image} 
-              alt="Luxury Product"
-              style={{
-                width: '100%',
-                maxWidth: 600,
-                maxHeight: '70vh',
-                objectFit: 'contain',
-                filter: 'drop-shadow(0 20px 60px rgba(0,0,0,0.9))'
-              }}
-            />
           </div>
         </div>
 
